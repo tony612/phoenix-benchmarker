@@ -19,6 +19,12 @@ defmodule Benchmarker.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", Benchmarker do
+    pipe_through :api
+
+    resources "/sessions", SessionController, only: [:create, :index]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Benchmarker do
   #   pipe_through :api
